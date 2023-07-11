@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:Session2.DataBinding.ViewModels"
+             x:Class="Session2.DataBinding.ArticleDetailsPage"
+             Padding="10"
+             BackgroundImageSource="patternbg.jpg">
+    <ScrollView x:DataType="local:ArticleDetailViewModel">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="200"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".4*"></ColumnDefinition>
+                <ColumnDefinition Width=".6*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="TitleLabel" 
+               Text="Edit Article"
+               Grid.Row="0" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="2" 
+               ></Label>
+            <Image x:Name="ArticleImage" 
+               Grid.Column="0"
+               Grid.Row="1" 
+               Grid.ColumnSpan="2"
+               Source="{Binding Article.ImageUrl}"
+               Margin="10" 
+               WidthRequest="200" 
+               HeightRequest="200" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center"></Image>
+            <Label Text="Article name" 
+               Grid.Row="2" 
+               Grid.Column="0"
+               ></Label>
+            <Entry Grid.Row="2"
+               Grid.Column="1"
+               Text="{Binding Article.Title, Mode=TwoWay}" 
+               ></Entry>
+            <Label Text="Price" 
+               Grid.Row="3" 
+               Grid.Column="0"
+               ></Label>
+            <Entry Grid.Row="3"
+               Grid.Column="1"
+               Text="{Binding Article.Price, Mode=TwoWay}" 
+               ></Entry>
+            <Label Text="Description" 
+               Grid.Row="4" 
+               Grid.Column="0"
+               ></Label>
+            <Editor Grid.Row="4"
+               Grid.Column="1"
+               Text="{Binding Article.Description, Mode=TwoWay}" 
+               ></Editor>
+            <Label Text="In stock?" 
+               Grid.Row="5" 
+               Grid.Column="0"
+               ></Label>
+            <Switch Grid.Row="5"
+               Grid.Column="1"
+               IsToggled="{Binding Article.InStock, Mode=TwoWay}"></Switch>
+            <Label Text="Available date" 
+               Grid.Row="6" 
+               Grid.Column="0"
+               ></Label>
+            <DatePicker Grid.Row="6"
+                Grid.Column="1"
+                Date="{Binding Article.AvailableFromDate, Mode=TwoWay}"></DatePicker>
+            <Button x:Name="SaveArticleButton" 
+                Command="{Binding SaveArticle}"
+                CommandParameter="{Binding .}"
+                Text="Save Article"                  
+                Grid.Row="7" 
+                Grid.Column="0"
+                Grid.ColumnSpan="2"></Button>
+        </Grid>
+    </ScrollView>
+</ContentPage>

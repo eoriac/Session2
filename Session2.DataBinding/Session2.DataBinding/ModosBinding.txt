@@ -1,0 +1,18 @@
+﻿Modos Binding
+
+- Default
+	Normalmente es OneWay - La mayoría de los controles.
+
+- OneTime
+	Se actualiza una sola vez, se utiliza sobre todo para dejar datos en el destino.
+	Si no se necesitan actualizaciones automáticas es mejor utilizarlo.
+
+- OneWay
+	Ocurre cada se vez que se actualice el contexto en un solo sentido.
+
+
+- TwoDay
+	Ocurre cada se vez que se actualice el contexto en ambos sentidos.
+
+- OneWayToSource
+    Ocurre cada se vez que se actualice el destino en un solo sentido hacia la fuente.

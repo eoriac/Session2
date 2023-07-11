@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Session2.DataBinding.ArticlesListPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <ListView VerticalOptions="FillAndExpand"
+              x:Name="ArticlesListView" CachingStrategy="RecycleElement">
+            <!--
+             ItemTapped="ArticlesListView_ItemTapped"
+            
+             ItemTemplate="{StaticResource localArticleTemplateSelector}"
+            -->
+            <!---->
+            <!--<ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Article 1</x:String>
+                    <x:String>Article 2</x:String>
+                    <x:String>Article 3</x:String>
+                    <x:String>Article 4</x:String>            
+                    <x:String>Article 5</x:String>
+                    <x:String>Article 6</x:String>            
+            </x:Array>
+            </ListView.ItemsSource>-->
+            <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}" Detail="{Binding Price}"></TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+            <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell Text="{Binding Title}" 
+                               Detail="{Binding Price, Converter={StaticResource LocalPriceConverter}}"
+                               ImageSource="{Binding ImageUrl}"
+                               TextColor="{Binding Price, Converter={StaticResource LocalDoubleToColorConverter}, ConverterParameter=12}"></ImageCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid HeightRequest="70"  Margin="5" BackgroundColor="White" RowSpacing="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Row="0" HeightRequest="100" WidthRequest="100" VerticalOptions="Start" Margin="2,2,1,2" Source="{Binding ImageUrl}"></Image>
+                            <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Start" Text="{Binding Title}" Margin="3" ></Label>
+                            <Label Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Price, Converter={StaticResource LocalPriceConverter}}" TextColor="{Binding Price, Converter={StaticResource LocalDoubleToColorConverter}, ConverterParameter=12}" FontAttributes="Bold" HorizontalTextAlignment="End"></Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <Button x:Name="AddItemButton" Grid.Row="1"
+                Clicked="AddItemButton_Clicked"
+                Text="Add Article"></Button>
+    </Grid>
+</ContentPage>

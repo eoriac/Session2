@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Session2.DataBinding.Models"
+             x:Class="Session2.DataBinding.MainPage">
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+            <model:Article Id="1" Title="From XAML" Description="Description from XAML" x:Key="Article"></model:Article>
+        </ResourceDictionary>
+    </ContentPage.Resources>-->    
+
+    <Grid Margin="20, 50, 20, 10" x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!--
+        <Label Grid.Row="0" Grid.Column="0" Text="Title"></Label>
+        <Entry Grid.Row="0" Grid.Column="1" x:Name="TitleEntry" Text="{Binding Title, Source={StaticResource Article}}"></Entry>
+        
+        <Label Grid.Row="1" Grid.Column="0" Text="Description"></Label>
+        <Entry Grid.Row="1" Grid.Column="1" x:Name="DescriptionEntry" Text="{Binding Description, Source={StaticResource Article}}"></Entry>
+        -->
+
+        <!--
+        <Label Grid.Row="0" Grid.Column="0" Text="Title"></Label>
+        <Entry Grid.Row="0" Grid.Column="1" x:Name="TitleEntry" Text="{Binding Title}"></Entry>
+
+        <Label Grid.Row="1" Grid.Column="0" Text="Description"></Label>
+        <Entry Grid.Row="1" Grid.Column="1" x:Name="DescriptionEntry" Text="{Binding Description}"></Entry>
+        -->
+
+        <Label Grid.Row="0" Grid.Column="0" Text="Title"></Label>
+        <Entry Grid.Row="0" Grid.Column="1" x:Name="TitleEntry" Text="{Binding PageArticle.Title}"></Entry>
+
+        <Label Grid.Row="1" Grid.Column="0" Text="Description"></Label>
+        <Entry Grid.Row="1" Grid.Column="1" x:Name="DescriptionEntry" Text="{Binding PageArticle.Description}"></Entry>
+
+        <Label Grid.Row="2" Grid.Column="0" Text="Price"></Label>
+        <Entry Grid.Row="2" Grid.Column="1" x:Name="PriceEntry" Text="{Binding PageArticle.Price, Mode=TwoWay}"></Entry>
+
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Add Article" Clicked="Button_Clicked"></Button>
+    </Grid>
+</ContentPage>

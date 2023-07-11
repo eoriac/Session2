@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converter="clr-namespace:Session2.DataBinding.Converters"
+             x:Class="Session2.DataBinding.App">
+    <Application.Resources>
+        <converter:PriceConverter x:Key="LocalPriceConverter"></converter:PriceConverter>
+        <converter:DebugConverter x:Key="LocalDebugConverter"></converter:DebugConverter>
+        <converter:DoubleToColorConverter x:Key="LocalDoubleToColorConverter"></converter:DoubleToColorConverter>
+    </Application.Resources>
+</Application>
