@@ -16,6 +16,8 @@ namespace Session2.DataBinding
     {
         public ObservableCollection<Article> Articles { get; set; }
 
+        bool flag = false;
+
         public ArticlesListPage()
         {
             InitializeComponent();
@@ -39,9 +41,10 @@ namespace Session2.DataBinding
                     AvailableFromDate = DateTime.Now,
                     Description = "Bar",
                     ImageUrl = "https://source.unsplash.com/user/c_v_r/1900x800",
-                    InStock = true,
+                    InStock = false,
                     Price = 99,
-                },                          new Article()
+                },                          
+                new Article()
                 {
                     Id = 3,
                     Title = "Foo 3",
@@ -50,7 +53,8 @@ namespace Session2.DataBinding
                     ImageUrl = "https://source.unsplash.com/user/c_v_r/1900x800",
                     InStock = true,
                     Price = 0.99,
-                },              new Article()
+                },              
+                new Article()
                 {
                     Id = 4,
                     Title = "Foo 4",
@@ -66,7 +70,7 @@ namespace Session2.DataBinding
                     AvailableFromDate = DateTime.Now,
                     Description = "Bar",
                     ImageUrl = "https://source.unsplash.com/user/c_v_r/1900x800",
-                    InStock = true,
+                    InStock = false,
                     Price = 12,
                 },
             };
@@ -79,13 +83,17 @@ namespace Session2.DataBinding
             var article = new Article()
             {
                 Title = "New Article",
-                Description = "Lorem ipsum, blablabla",
+                Description = "Lorem ipsum, bla bla bla",
                 Price = 9.99,
                 ImageUrl = "https://source.unsplash.com/user/c_v_r/1900x800",
                 InStock = true,
             };
 
             Articles.Add(article);
+
+            this.Resources["buttonStyleDynamic"] = this.flag ? this.Resources["alternateHeadlineStyle"] : this.Resources["regularHeadlineStyle"];
+
+            this.flag = !this.flag;
         }
     }
 }

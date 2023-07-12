@@ -1,11 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converter="clr-namespace:Session2.DataBinding.Converters"
              x:Class="Session2.DataBinding.App">
     <Application.Resources>
+        <!--<ResourceDictionary>-->
+            <!--<ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Colors.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>-->
+        <!--</ResourceDictionary>-->
+        
         <converter:PriceConverter x:Key="LocalPriceConverter"></converter:PriceConverter>
         <converter:DebugConverter x:Key="LocalDebugConverter"></converter:DebugConverter>
         <converter:DoubleToColorConverter x:Key="LocalDoubleToColorConverter"></converter:DoubleToColorConverter>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Colors.xaml"/>
+                <ResourceDictionary>
+                    <Style x:Key="RegularButtonStyle" TargetType="Button">
+                        <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                        <Setter Property="VerticalOptions" Value="Start"></Setter>
+                        <Setter Property="BackgroundColor" Value="{StaticResource ArticleGreenColor}"></Setter>
+                        <Setter Property="TextColor" Value="Black"></Setter>
+                    </Style>
+
+                    <Style x:Key="TitleLabelStyle" TargetType="Label">
+                        <Setter Property="FontSize" Value="Large"></Setter>
+                        <Setter Property="FontAttributes" Value="Bold"></Setter>
+                        <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                        <Setter Property="VerticalOptions" Value="Center"></Setter>
+                    </Style>
+
+                    <Style x:Key="RegularEntry" TargetType="Entry">
+                        <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+                        <Setter Property="VerticalOptions" Value="Center"></Setter>
+                    </Style>
+
+                    <Style x:Key="RegularEditorStyle" TargetType="Editor">
+                        <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+                        <Setter Property="VerticalOptions" Value="Center"></Setter>
+                        <Setter Property="FontSize" Value="Small"></Setter>
+                    </Style>
+
+                    <Style x:Key="BaseLabelStyle" TargetType="Label">
+                        <Setter Property="HorizontalOptions" Value="Start"></Setter>
+                        <Setter Property="VerticalOptions" Value="Center"></Setter>
+                        <Setter Property="TextColor" Value="{StaticResource ArticleGreenColor}"></Setter>
+                    </Style>
+
+                    <!--Style inheritance-->
+                    <Style x:Key="SmallLabelStyle" TargetType="Label" 
+               BasedOn="{StaticResource BaseLabelStyle}">
+                        <Setter Property="FontSize" Value="Small"></Setter>
+                    </Style>
+
+                    <Style x:Key="MediumLabelStyle" TargetType="Label" 
+               BasedOn="{StaticResource BaseLabelStyle}">
+                        <Setter Property="FontSize" Value="Medium"></Setter>
+                    </Style>
+
+                    <Style x:Key="LargeLabelStyle" TargetType="Label" 
+               BasedOn="{StaticResource BaseLabelStyle}">
+                        <Setter Property="FontSize" Value="Large"></Setter>
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

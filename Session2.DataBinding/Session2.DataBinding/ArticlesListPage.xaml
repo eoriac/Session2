@@ -1,7 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:templateSelector="clr-namespace:Session2.DataBinding.TemplateSelector"
              x:Class="Session2.DataBinding.ArticlesListPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="regularHeadlineStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Gray"/>
+                <Setter Property="FontAttributes" Value="Bold,Italic"/>
+            </Style>
+            <Style x:Key="alternateHeadlineStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="DimGray"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            
+            <DataTemplate x:Key="RegularArticleTemplate">
+                <ViewCell>
+                    <Grid HeightRequest="70"  Margin="5" BackgroundColor="White" RowSpacing="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="0" HeightRequest="100" WidthRequest="100" VerticalOptions="Start" Margin="2,2,1,2" Source="{Binding ImageUrl, TargetNullValue='https://source.unsplash.com/user/c_v_r/1900x800'}"></Image>
+                        <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Start" Style="{DynamicResource buttonStyleDynamic}" Text="{Binding Title}" Margin="3" ></Label>
+                        <!--<Label Grid.Row="0" Grid.Column="2" Margin="3" 
+                               TextColor="{Binding Price, Converter={StaticResource LocalDoubleToColorConverter}, ConverterParameter=9.0}"
+                               Text="{Binding Price, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource SmallLabelStyle}" FontAttributes="Bold" HorizontalTextAlignment="End"></Label>-->
+                        <Label Grid.Row="0" Grid.Column="2" Margin="3" 
+                               TextColor="{Binding Price, Converter={StaticResource LocalDoubleToColorConverter}, ConverterParameter=9.0}"
+                               Text="{Binding Price, StringFormat='{0:c}'}" Style="{StaticResource SmallLabelStyle}" FontAttributes="Bold" HorizontalTextAlignment="End"></Label>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="NotInStockTemplate">
+                <ViewCell>
+                    <Grid HeightRequest="70"  Margin="5" BackgroundColor="LightGray" RowSpacing="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="0" HeightRequest="100" WidthRequest="100" VerticalOptions="Start" Margin="2,2,1,2" Source="{Binding ImageUrl, TargetNullValue='https://source.unsplash.com/user/c_v_r/1900x800'}"></Image>
+                        <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Start" Style="{StaticResource MediumLabelStyle}" Text="{Binding Title}" Margin="3" ></Label>
+                        <!--<Label Grid.Row="0" Grid.Column="2" Margin="3" 
+                               TextColor="{Binding Price, Converter={StaticResource LocalDoubleToColorConverter}, ConverterParameter=9.0}" 
+                               Text="{Binding Price, Converter={StaticResource LocalCurrencyConverter}}" Style="{StaticResource SmallLabelStyle}" FontAttributes="Bold" HorizontalTextAlignment="End"></Label>-->
+                        <Label Grid.Row="0" Grid.Column="2" Margin="3" 
+                               TextColor="{Binding Price, Converter={StaticResource LocalDoubleToColorConverter}, ConverterParameter=9.0}" 
+                               Text="{Binding Price, StringFormat='{0:c}'}" Style="{StaticResource SmallLabelStyle}" FontAttributes="Bold" HorizontalTextAlignment="End"></Label>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <templateSelector:ArticleTemplateSelector x:Key="localArticleTemplateSelector"
+                                                  RegularArticleTemplate="{StaticResource RegularArticleTemplate}"
+                                                  NotInStockTemplate="{StaticResource NotInStockTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -10,8 +73,13 @@
 
 
         <ListView VerticalOptions="FillAndExpand"
-              x:Name="ArticlesListView" CachingStrategy="RecycleElement">
+              x:Name="ArticlesListView"
+              CachingStrategy="RecycleElement"
+              ItemTemplate="{StaticResource localArticleTemplateSelector}">
             <!--
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+              RefreshCommand="{Binding RefreshCommand}"
+            
              ItemTapped="ArticlesListView_ItemTapped"
             
              ItemTemplate="{StaticResource localArticleTemplateSelector}"
@@ -40,7 +108,7 @@
                                TextColor="{Binding Price, Converter={StaticResource LocalDoubleToColorConverter}, ConverterParameter=12}"></ImageCell>
                 </DataTemplate>
             </ListView.ItemTemplate>-->
-            <ListView.ItemTemplate>
+            <!--<ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid HeightRequest="70"  Margin="5" BackgroundColor="White" RowSpacing="2">
@@ -58,7 +126,7 @@
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
-            </ListView.ItemTemplate>
+            </ListView.ItemTemplate>-->
 
         </ListView>
         <Button x:Name="AddItemButton" Grid.Row="1"

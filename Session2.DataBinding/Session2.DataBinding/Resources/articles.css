@@ -1,0 +1,25 @@
+﻿^contentpage {
+    background-color: gray;
+}
+
+label {
+    color: white;
+    font-size: 18;
+}
+
+#title {
+    color: black;
+    font-size: 24;
+    margin-bottom: 15;
+    font-style: bold italic;
+}
+
+.greetings {
+    font-style: italic;
+    color: black;
+}
+
+grid > entry {
+    padding: 20;
+    background-color: #555;
+}

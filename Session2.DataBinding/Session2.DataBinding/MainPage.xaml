@@ -2,12 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:Session2.DataBinding.Models"
+             Title="{Binding PageArticle.Title}"
              x:Class="Session2.DataBinding.MainPage">
-    <!--<ContentPage.Resources>
-        <ResourceDictionary>
+    <ContentPage.Resources>
+        <!--<ResourceDictionary>
             <model:Article Id="1" Title="From XAML" Description="Description from XAML" x:Key="Article"></model:Article>
-        </ResourceDictionary>
-    </ContentPage.Resources>-->    
+        </ResourceDictionary>-->
+        <StyleSheet Source="Resources/articles.css"></StyleSheet>
+    </ContentPage.Resources>    
 
     <Grid Margin="20, 50, 20, 10" x:Name="MainGrid">
         <Grid.RowDefinitions>
@@ -38,10 +40,10 @@
         <Entry Grid.Row="1" Grid.Column="1" x:Name="DescriptionEntry" Text="{Binding Description}"></Entry>
         -->
 
-        <Label Grid.Row="0" Grid.Column="0" Text="Title"></Label>
+        <Label x:Name="title" Grid.Row="0" Grid.Column="0" Text="Title"></Label>
         <Entry Grid.Row="0" Grid.Column="1" x:Name="TitleEntry" Text="{Binding PageArticle.Title}"></Entry>
 
-        <Label Grid.Row="1" Grid.Column="0" Text="Description"></Label>
+        <Label StyleClass="greetings"  Grid.Row="1" Grid.Column="0" Text="Description"></Label>
         <Entry Grid.Row="1" Grid.Column="1" x:Name="DescriptionEntry" Text="{Binding PageArticle.Description}"></Entry>
 
         <Label Grid.Row="2" Grid.Column="0" Text="Price"></Label>
